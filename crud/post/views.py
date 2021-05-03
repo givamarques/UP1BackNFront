@@ -8,5 +8,5 @@ def add(request):
     return render(request, 'add.html')
 
 # Update method
-def update(request.id):
+def update(request, id):
     return render(request, 'update.html')
