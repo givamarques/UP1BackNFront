@@ -13,18 +13,24 @@
     <div class="card my-3">
         <h5 class="card-header">Add Post</h5>
         <div class="card-body">
-            <form>
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class="text-success">{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="post" action="/add">
+                {% csrf_token %}
                 <table class="table table-bordered">
                     <tr>
                         <th>Title</th>
                         <td>
-                            <input type="text" class="form-control" />
+                            <input type="text" name="title" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>Detail</th>
                         <td>
-                            <textarea class="form-control"></textarea>
+                            <textarea name="detail" class="form-control"></textarea>
                         </td>
                     </tr>
                         <tr>
