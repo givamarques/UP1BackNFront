@@ -10,11 +10,18 @@
 <body>
 <div class="container my-4">
     <h3>All Posts</h3>
+    <p>
+        <a class="btn btn-success" href="/add">Add Data</a>
+    </p>
     {% for post in posts %}
     <div class="card my-3">
         <h5 class="card-header">{{post.title}}</h5>
         <div class="card-body">
             <p class="card-text">{{post.detail}}</p>
+            <p>
+                <a href="/update/{{post.id}}" class="btn btn-success">Update</a>
+                <a onclick="return confirm('Are you sure to delete?')" href="/delete/{{post.id}}" class="btn btn-danger" >Delete</a>
+            </p>
         </div>
     </div>
     {% endfor %}

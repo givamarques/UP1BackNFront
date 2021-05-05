@@ -10,21 +10,26 @@
 <body>
 <div class="container my-4">
     <h3>Update Posts</h3>
+    <p><a class="btn btn-success" href="/">All Data</a></p>
     <div class="card my-3">
         <h5 class="card-header">Add Post</h5>
         <div class="card-body">
-            <form>
+            {% if messages %}
+                <p class="text-success">{{msg}}</p>
+            {% endfor %}
+            <form methods="post" action="/update/{{post.id}}">
+                {% csrf_token %}
                 <table class="table table-bordered">
                     <tr>
                         <th>Title</th>
                         <td>
-                            <input type="text" class="form-control" />
+                            <input value="{{post.title}}" name="title" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>Detail</th>
                         <td>
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control">{{post.detail}}</textarea>
                         </td>
                     </tr>
                         <tr>

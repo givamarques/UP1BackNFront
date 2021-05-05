@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from django.contrib import messages
 
@@ -17,4 +17,15 @@ def add(request):
 
 # Update method
 def update(request, id):
-    return render(request, 'update.html')
+    if request.method=='POST':
+        title=request.POST['title']
+        detail=request.POST['detail']
+        Post.objects.filter(id=id).update(title=title,detail=detail)
+        messages.success(request, 'Data has been updated')
+    post=Post.objects.get(id=id)
+    return render(request, 'update.html',{'post':post})
+
+# Delete method
+def delete(request, id):
+    Post.objects.filter(id=id).delete()
+    return redirect('/')
